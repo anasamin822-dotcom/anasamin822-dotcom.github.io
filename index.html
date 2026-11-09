@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script>
+(function(){var M={'/ml/face_landmarker.task':'/ml/2-face_landmarker.task','/assets/wasm/vision_wasm_internal.js':'/assets/wasm/3-vision_wasm_internal.js','/assets/wasm/vision_wasm_internal.wasm':'/assets/wasm/4-vision_wasm_internal.wasm'};
+function m(u){try{var x=new URL(u,location.href);if(x.origin===location.origin&&M[x.pathname])return M[x.pathname]+x.search}catch(e){}return u}
+var f=window.fetch;window.fetch=function(i,o){if(typeof i==='string'||i instanceof URL)return f.call(this,m(String(i)),o);if(i instanceof Request)return f.call(this,new Request(m(i.url),i),o);return f.call(this,i,o)};
+var xo=XMLHttpRequest.prototype.open;XMLHttpRequest.prototype.open=function(a,u){arguments[1]=m(String(u));return xo.apply(this,arguments)};
+var d=Object.getOwnPropertyDescriptor(HTMLScriptElement.prototype,'src');Object.defineProperty(HTMLScriptElement.prototype,'src',{get:d.get,set:function(v){d.set.call(this,m(String(v)))},configurable:true});
+var sa=Element.prototype.setAttribute;Element.prototype.setAttribute=function(n,v){if(this instanceof HTMLScriptElement&&n==='src')v=m(String(v));return sa.call(this,n,v)};
+})();
+</script>
+
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/trikomi-react-demo/svgs/white.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trikomi Eyewear Try-On</title>
+  <meta name="description"
+    content="AR-powered virtual eyewear try-on using face tracking and IPD measurement. Accurately fits glasses frames in real time via camera.">
+  <style>
+    body {
+      margin: 0;
+      background-color: #050505;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    #spinner {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #050505;
+      transition: opacity 0.5s ease;
+    }
+
+    .premium-loader {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-top-color: #ffffff;
+      animation: spin 1s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
+      margin-bottom: 24px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .spinner-text {
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #888;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 0.5;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+  </style>
+  <script type="module" crossorigin src="/trikomi-react-demo/assets/index-DNzLpW-8.js"></script>
+  <link rel="stylesheet" crossorigin href="/trikomi-react-demo/assets/index-60jQRyt-.css">
+</head>
+
+<body>
+  <div id="spinner">
+    <div class="premium-loader"></div>
+    <div class="spinner-text">Loading Engine</div>
+  </div>
+  <script>
+    window.trikomi_config = {
+      apiKey: 'vk_live_5ebtdzpw7zradamp',
+      fallbackJwt: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJraWQiOiJ2a19saXZlXzVlYnRkenB3N3pyYWRhbXAiLCJkIjpbImdpdGh1Yi5pbyIsImxvY2FsaG9zdCIsIjEyNy4wLjAuMSJdLCJwbHVnaW5zIjpbIjNEIFZpZXdlciIsIkpld2VscnkgQ29uZmlndXJhdG9yIiwiU3BvcnRzd2VhciBDb25maWd1cmF0b3IiLCJCb3ggUGFja2FnaW5nIENvbmZpZ3VyYXRvciIsIkZhY2UgTW90aW9uIENhcHR1cmUiLCJFeWV3ZWFyIFZpcnR1YWwgVHJ5LU9uIiwiMzYwXHUwMGIwIFZpcnR1YWwgVG91ciIsIlZpcnR1YWwgM0QgRXhoaWJpdGlvbiJdLCJmZWF0dXJlcyI6WyJWU1QwMDIiLCJWU1QwMDMiLCJWU1QwMDUiLCJWU1QwMDYiLCJWU1QwMDgiLCJWU1QxMDMiLCJWU1QxMDciLCJWU1Q0MDYiLCJWU1Q5MDEiLCJWU1QwMDEiLCJWU1QwMDQiLCJWU1QyMDEiLCJWU1QxMDQiLCJWU1QxMDYiLCJWU1QyMDIiLCJWU1QyMDMiLCJWU1QyMDQiLCJWU1QzMDEiLCJWU1QzMDIiLCJWU1QzMDMiLCJWU1QzMDQiLCJWU1QzMDUiLCJWU1QzMDYiLCJWU1Q0MDEiLCJWU1Q0MDIiLCJWU1Q0MDMiLCJWU1Q0MDQiLCJWU1Q0MDUiLCJWU1Q1MDEiLCJWU1Q1MDIiLCJWU1Q1MDMiLCJWU1Q1MDgiLCJWU1Q1MTIiLCJWU1QyMDUiLCJWU1QyMDYiXSwiZSI6MjEwNjcwMjk3ODAwMCwidSI6MSwiYiI6ZmFsc2V9.bRx_5fh6oprn8EuZ2oh5i2mkmfjnprIf_cZPHRMRZt9TCeWLubEWFuMZT16YYxBImcV7EnFl7ByoDAXEXTkk9w'
+    };
+  </script>
+  <div id="root"></div>
+</body>
+
+</html>
